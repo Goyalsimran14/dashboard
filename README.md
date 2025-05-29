@@ -32,7 +32,7 @@ A personalized, full-featured GATE CSE preparation dashboard built using **Strea
 
 ---
 
-## 📁 File Structure
+## 📁 Main File Structure
 
 ```bash
 gate-cse-dashboard/
@@ -60,16 +60,19 @@ gate-cse-dashboard/
 
 ### 🚀 Setup Instructions
 1. Clone the repository:
-bash
+```bash
 git clone https://github.com/your-username/gate-cse-dashboard.git
 cd gate-cse-dashboard
+```
 2. Install dependencies:
-bash
+```bash
 pip install -r requirements.txt
-requirements.txt (you can create this using pip freeze > requirements.txt)
+requirements.txt 
+```
 3. Run the app:
-bash
+```bash
 streamlit run dashboard.py
+```
 4. Login or Sign Up to begin using your dashboard!
 ---
 
