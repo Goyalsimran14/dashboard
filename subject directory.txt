@@ -1,0 +1,302 @@
+# Subjects dictionary
+subjects = {
+        "Operating System": {
+            "Topics": ["Process Management", "Memory Management", "File Systems"],
+            "YouTube": ["https://youtube.com/playlist?list=PLG9aCp4uE-s17rFjWM8KchGlffXgOzzVP"],
+            "PYQs": ["https://youtube.com/playlist?list=PLIPZ2_p3RNHixlIaarIXGPy-eggJQMxd_"],
+            "NPTEL": ["https://youtube.com/playlist?list=PLyqSpQzTE6M9SYI5RqwFYtFYab94gJpWk"],
+            "Textbooks": ["Operating Systems by Avi Silberschatz, Greg Gagne, and Peter Baer Galvin"],
+            "Free Tests": [
+                "https://gateoverflow.in/exam/32/go2017-os-1",
+                "https://gateoverflow.in/exam/32/go2017-os-2",
+                "https://gateoverflow.in/exam/32/go2017-os-3",
+                "https://gateoverflow.in/exam/148/operating-systems-gate2020-previous-gate-2"
+            ],
+            "Progress": "Not Started"
+        },
+        "Computer Organization & Architecture": {
+            "Topics": ["Machine Instructions", "Pipelining", "Memory Hierarchy"],
+            "YouTube": ["https://youtube.com/playlist?list=PLG9aCp4uE-s0xddCBjwMDnEVyc523WbA2"],
+            "PYQs": ["https://youtube.com/playlist?list=PLG9aCp4uE-s2qCKKu2XD3zDK-NFEvE91n"],
+            "NPTEL": [
+                "https://youtube.com/playlist?list=PLgHucKw979AvcnTpPNZMZyORdL5HvTr9m",
+                "https://youtube.com/playlist?list=PL2F82ECDF8BB71B0C"
+            ],
+            "Textbooks": [
+                "Computer Organisation by Carl Hamacher",
+                "Computer Organization and Design: the Hardware/Software Interface by David A Patterson and John L. Hennessy"
+            ],
+            "Free Tests": [
+                "https://gateoverflow.in/exam/46/computer-architecture",
+                "https://gateoverflow.in/exam/83/computer-architecture-2",
+                "https://gateoverflow.in/exam/153/co-and-architecture-gate2020-previous-gate-1",
+                "https://gateoverflow.in/exam/154/co-and-architecture-gate2020-previous-gate-2"
+            ],
+            "Progress": "Not Started"
+        },
+        "Computer Networks": {
+            "Topics": ["TCP/IP", "Routing Protocols", "Network Security"],
+            "YouTube": ["https://youtube.com/playlist?list=PLC36xJgs4dxHT-TxTy3U1slr5RaBJGaLd"],
+            "PYQs": ["https://youtube.com/playlist?list=PLIPZ2_p3RNHim3NUSNOb7ffyhaE5MSkmE"],
+            "NPTEL": ["https://youtube.com/playlist?list=PLbRMhDVUMngf-peFloB7kyiA40EptH1up"],
+            "Textbooks": ["Data Communications and Networking by Behrouz A. Forouzan"],
+            "Free Tests": [
+                "https://gateoverflow.in/exam/49/computer-networks",
+                "https://gateoverflow.in/exam/143/computer-networks-gate2020-previous-gate-1",
+                "https://gateoverflow.in/exam/144/computer-networks-gate2020-previous-gate-2"
+            ],
+            "Progress": "Not Started"
+        },
+               "Compiler Design": {
+            "Topics": ["Lexical Analysis", "Parsing", "Syntax-Directed Translation", "Runtime Environments", "Intermediate Code Generation"],
+            "YouTube": ["https://youtube.com/playlist?list=PLEbnTDJUr_IcPtUXFy2b1sGRPsLFMghhS"],
+            "PYQs": ["https://youtube.com/playlist?list=PLIPZ2_p3RNHjy3eH_qRImIs5dVUTpr9ga"],
+            "NPTEL": ["https://youtube.com/playlist?list=PL54i8TI-dREaHgsBFNalWnz-bC9CZkOBb"],
+            "Textbooks": ["Compilers: Principles, Techniques, and Tools by Aho, Lam, Sethi, and Ullman"],
+            "Free Tests": [
+                "https://gateoverflow.in/exam/47/compiler-design",
+                "https://gateoverflow.in/exam/151/compiler-design-gate2020-previous-gate-1",
+                "https://gateoverflow.in/exam/152/compiler-design-gate2020-previous-gate-2"
+            ],
+            "Progress": "Not Started"
+        },
+        "Theory of Computation": {
+            "Topics": ["Finite Automata", "Turing Machines", "Pumping Lemma"],
+            "YouTube": ["https://youtube.com/playlist?list=PLC36xJgs4dxGvebewU4z2CZYo-8nB93E7"],
+            "PYQs": ["https://youtube.com/playlist?list=PLIPZ2_p3RNHhXeEdbXsi34ePvUjL8I-Q9"],
+            "NPTEL": ["https://youtube.com/playlist?list=PLbRMhDVUMngcwWkzVTm_kFH6JW4JCtAUM"],
+            "Textbooks": ["An Introduction to Formal Languages and Automata by Peter Linz"],
+            "Free Tests": [
+                "https://gateoverflow.in/exam/48/theory-of-computation",
+                "https://gateoverflow.in/exam/84/theory-of-computation-test-2",
+                "https://gateoverflow.in/exam/86/theory-of-computation-previous-gate-1"
+            ],
+            "Progress": "Not Started"
+        },
+        "C-Programming": {
+            "Topics": ["Basics of C", "Pointers", "Data Structures in C", "File Handling"],
+            "YouTube": ["https://youtube.com/playlist?list=PLbE3-5DBkMUkATaUFgDIpBDbfnym0qvsQ"],
+            "NPTEL": ["https://youtube.com/playlist?list=PLEAYkSg4uSQ2k6GwNhpgSHodGT8wfvgwu"],
+            "Textbooks": ["The C Programming Language by Brian Kernighan and Dennis Ritchie (2E)"],
+            "PYQs": ["https://github.com/GATEOverflow/GO-PDFs/releases/tag/gatecse-2025"],
+            "Free Tests": [
+                "https://gateoverflow.in/exam/39/go2017-programming-1",
+                "https://gateoverflow.in/exam/80/go_programming-test-2",
+                "https://gateoverflow.in/exam/181/programming-gate2020-previous-gate-1",
+                "https://gateoverflow.in/exam/182/programming-gate2020-previous-gate-2"
+            ],
+            "Progress": "Not Started"
+        },
+    
+"Data Structures (DS)": {
+    "Topics": ["Arrays", "Linked Lists", "Stacks", "Queues", "Trees", "Graphs"],
+    "YouTube": ["https://youtube.com/playlist?list=PLIC0AxWOdm5BvHpI_AtPqqjoADnSqcYgp&si=q_Qps7uYmU2RjuLr"],
+    "PYQs": ["https://youtube.com/playlist?list=PLG9aCp4uE-s3Rs4AjzG0VcXQCggmOJJ6W&si=YgSf-sgQNlmT2tBd"],
+    "NPTEL": ["https://youtube.com/playlist?list=PLBF3763AF2E1C572F&si=oiRSnIiN4ntMIPQL"],
+    "Textbooks": ["Data Structures And Algorithms by Narasimha Karumanchi"],
+    "Free Tests": [
+        "https://gateoverflow.in/exam/52/data-structure-set-2",
+        "https://gateoverflow.in/exam/177/data-structures-gate2020-previous-gate-1",
+        "https://gateoverflow.in/exam/178/data-structures-gate2020-previous-gate-2",
+        "https://gateoverflow.in/exam/179/data-structures-gate2020-previous-gate-3",
+        "https://gateoverflow.in/exam/180/data-structures-gate2020-previous-gate-4"
+    ],
+    "Progress": "Not Started"
+},
+# Add this to the subjects dictionary in the dashboard_page function
+"Algorithms": {
+    "Topics": ["Sorting", "Searching", "Dynamic Programming", "Greedy Algorithms", "Graph Algorithms"],
+    "YouTube": ["https://youtube.com/playlist?list=PLAXnLdrLnQpRcveZTtD644gM9uzYqJCwr&si=U_A4tdPO33X3xV8I"],
+    "PYQs": ["https://youtube.com/playlist?list=PLIPZ2_p3RNHjUCHdJp-_soSSmhgmO4i0T&si=5LN5dM51DjRDMOJ1"],
+    "NPTEL": ["https://youtube.com/playlist?list=PL7DC83C6B3312DF1E&si=pme4ZTL1jou81mt4"],
+    "Textbooks": [
+        "Introduction to Algorithms, by CLRS (3E) - ch 1-4, 6-9,10, 11.1-11.4, 12.1-21.3, 15, 16.1-16.3, 17, 21-25.2",
+        "Algorithm Design, Jon Kleinberg and Éva Tardos - ch 1-6"
+    ],
+    "Free Tests": [
+        "https://gateoverflow.in/exam/37/go2017-algorithms-1",
+        "https://gateoverflow.in/exam/82/algorithm-test-2",
+        "https://gateoverflow.in/exam/66/algorithms-previous-gate-1",
+        "https://gateoverflow.in/exam/145/algorithms-gate2020-previous-gate-1",
+        "https://gateoverflow.in/exam/146/algorithms-gate2020-previous-gate-2"
+    ],
+    "Progress": "Not Started"
+},
+# Add this to the subjects dictionary in the dashboard_page function
+"Digital Logic": {
+    "Topics": ["Boolean Algebra", "Combinational Circuits", "Sequential Circuits", "Minimization"],
+    "YouTube": ["https://youtube.com/playlist?list=PLBlnK6fEyqRjMH3mWf6kwqiTbT798eAOm&si=4C0Z9de3YKT4zHeb"],
+    "PYQs": ["https://www.youtube.com/live/h-SDoV0_pwQ?si=PmwmIQ__UHWvUorW"],
+    "NPTEL": ["https://youtube.com/playlist?list=PL803563859BF7ED8C&si=OXD8r2PBFbS6gbcC"],
+    "Textbooks": ["Digital Logic and Computer Design by M. Morris Mano - 1.1-1.8, 2.1-2.7, 3-7"],
+    "Free Tests": [
+        "https://gateoverflow.in/exam/33/go2017-digital-1",
+        "https://gateoverflow.in/exam/51/digital-design-set-2",
+        "https://gateoverflow.in/exam/157/digital-logic-gate2020-previous-gate-1",
+        "https://gateoverflow.in/exam/158/digital-logic-gate2020-previous-gate-2",
+        "https://gateoverflow.in/exam/174/digital-logic-gate2020-previous-gate-3",
+        "https://gateoverflow.in/exam/175/digital-logic-gate2020-previous-gate-4"
+    ],
+    "Progress": "Not Started"
+},
+"Database Management System (DBMS)": {
+    "Topics": ["ER Model", "Normalization", "Transactions", "SQL"],
+    "YouTube": ["https://youtube.com/playlist?list=PLG9aCp4uE-s0bu-I8fgDXXhVLO4qVROGy&si=5Iies1OyzDGms31i"],
+    "PYQs": ["https://youtube.com/playlist?list=PLIPZ2_p3RNHh3otU-TnAK-GkqrvvOO33C&si=8Kazn74m30yhUDvh"],
+    "NPTEL": ["https://youtube.com/playlist?list=PL-wVMhlYPDDkRQ0XrQ8IuslSiAWPpSfuJ&si=wEyZRgIxdNZgyqXE"],
+    "Textbooks": [
+        "Fundamentals of Database Systems by Ramez Elmasri and Shamkant B. Navathe (7E) - ch 1.3-1.6, 2.1-2.3, 3, 5-8, 9.1, 14.1-14.5, 14.6-14.7(just overview), 15.1-15.4, 16.1-16.7, 17.1-17.6, 20.1-20.5, 21.1-21.4, 21.7"
+    ],
+    "Free Tests": [
+        "https://gateoverflow.in/exam/50/database-systems",
+        "https://gateoverflow.in/exam/85/dbms-subject-test-2",
+        "https://gateoverflow.in/exam/155/databases-gate2020-previous-gate-1",
+        "https://gateoverflow.in/exam/156/databases-gate2020-previous-gate-2",
+        "https://gateoverflow.in/exam/172/databases-gate2020-previous-gate-3",
+        "https://gateoverflow.in/exam/173/databases-gate2020-previous-gate-4"
+    ],
+    "Progress": "Not Started"
+},
+# Add this to the subjects dictionary in the dashboard_page function
+"Discrete Maths": {
+    "Topics": ["Propositional Logic", "Combinatorics", "Recurrence Relations", "Group Theory", "Graph Theory", "Generating Function", "Set Theory"],
+    "YouTube": [
+        "Propositional Logic: https://youtube.com/playlist?list=PLIPZ2_p3RNHillKxh1_iFeZhy9MftHeWW&si=4om73pMxQvuToQvh",
+        "Combinatorics: https://youtube.com/playlist?list=PLIPZ2_p3RNHgm_UqwqckMxM68HS4BkjYY&si=ksPAjkwm2cb28NVn",
+        "Recurrence Relations: https://youtube.com/playlist?list=PLIPZ2_p3RNHhhTH0o1JBMgscMUvxs4E_4&si=r3THjdW_19iFCAIm",
+        "Group Theory: https://youtube.com/playlist?list=PLIPZ2_p3RNHhXves0XVa8d5O6F4rUi3KR&si=8-C9TfTK2XjdG6Pt",
+        "Graph Theory: https://youtube.com/playlist?list=PLIPZ2_p3RNHjQoj0k-BlI9zXE0QKdl-lI&si=GGNFwhNSHxhdcJOQ",
+        "Generating Function: https://youtube.com/playlist?list=PLIPZ2_p3RNHjQoj0k-BlI9zXE0QKdl-lI&si=GGNFwhNSHxhdcJOQ",
+        "Set Theory: https://youtube.com/playlist?list=PLIPZ2_p3RNHjHnhdkPWFAlcizVQJ8w4TX&si=aOl21dH2q3NjaDgx"
+    ],
+    "PYQs": ["https://github.com/GATEOverflow/GO-PDFs/releases/tag/gatecse-2025"],
+    "NPTEL": ["https://youtube.com/playlist?list=PLgMDNELGJ1Ca7hpEIYtWvMXKcTx88OD2O&si=1WcmQtcIG0sFqSlg"],
+    "Textbooks": [
+        "Discrete mathematics and its applications by Kenneth H. Rosen (Indian 7E) - ch 1,2, 4-8, 11.1-11.3",
+        "Discrete mathematics with applications by Susanna S. Epp (4E) - ch 1, 2.1-2.3, 3, 4(optional), 5.1, 5.5-5.7, 6-10, 11-12(optional)"
+    ],
+    "Free Tests": [
+        "https://gateoverflow.in/exam/601/go-classes-2025-weekly-quiz-5-propositional-logic",
+        "https://gateoverflow.in/exam/602/go-classes-2025-weekly-quiz-6-propositional-logic",
+        "https://gateoverflow.in/exam/603/go-classes-2025-weekly-quiz-7-propositional-logic",
+        "https://gateoverflow.in/exam/605/go-classes-2025-weekly-quiz-8-set-theory",
+        "https://gateoverflow.in/exam/614/go-classes-cs-2025-weekly-quiz-6-functions",
+        "https://gateoverflow.in/exam/622/go-classes-cs-2025-weekly-quiz-7-relations",
+        "https://gateoverflow.in/exam/641/go-classes-cs-2025-weekly-quiz-15-lattice-%26-poset",
+        "https://gateoverflow.in/exam/438/discrete-mathematics-propositional-logic-test-1",
+        "https://gateoverflow.in/exam/441/discrete-mathematics-propositional-logic-test-2",
+        "https://gateoverflow.in/exam/447/discrete-mathematics-logic-test-3",
+        "https://gateoverflow.in/exam/456/discrete-mathematics-logic-test-4",
+        "https://gateoverflow.in/exam/191/set-theory-%26-algebra-gate2020-previous-gate-1",
+        "https://gateoverflow.in/exam/192/set-theory-%26-algebra-gate2020-previous-gate-2",
+        "https://gateoverflow.in/exam/193/combinatorics-gate2020-previous-gate-1",
+        "https://gateoverflow.in/exam/194/mathematical-logic-gate2020-previous-gate-1",
+        "https://gateoverflow.in/exam/195/mathematical-logic-gate2020-previous-gate-2",
+        "https://gateoverflow.in/exam/196/graph-theory-gate2020-previous-gate-1",
+        "https://gateoverflow.in/exam/87/set-theory-%26-algebra-previous-gate-1",
+        "https://gateoverflow.in/exam/69/graph-theory-previous-gate-1"
+    ],
+    "Progress": "Not Started"
+},
+"Linear Algebra (LA)": {
+    "Topics": ["Matrix Operations", "Vector Spaces", "Eigenvalues and Eigenvectors"],
+    "YouTube": ["https://youtube.com/playlist?list=PLIPZ2_p3RNHhGLQ1ZT37KLpBMAD90CM4_&si=VpylHczkW8ylqspx"],
+    "PYQs": ["https://github.com/GATEOverflow/GO-PDFs/releases/tag/gatecse-2025"],
+    "NPTEL": ["https://youtube.com/playlist?list=PLFW6lRTa1g80fZ1giRbqbe_XdXPdkkyqY&si=l3-KeMND-CfmrJzv"],
+    "Textbooks": ["Videos for intuition: https://youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&si=YAaXZ9srWqvlpwz8"],
+    "Free Tests": [
+        "https://gateoverflow.in/exam/598/go-classes-2025-weekly-quiz-3-fundamental-course-and-linear-algebra",
+        "https://gateoverflow.in/exam/600/go-classes-2025-weekly-quiz-4-linear-algebra",
+        "https://gateoverflow.in/exam/606/go-classes-2025-common-weekly-quiz-5-linear-algebra",
+        "https://gateoverflow.in/exam/68/linear-algebra-previous-gate-1",
+        "https://gateoverflow.in/exam/161/linear-algebra-gate2020-previous-gate-1",
+        "https://gateoverflow.in/exam/162/linear-algebra-gate2020-previous-gate-2"
+    ],
+    "Progress": "Not Started"
+},
+"Probability": {
+    "Topics": ["Conditional Probability", "Random Variables", "Probability Distributions"],
+    "YouTube": ["https://youtube.com/playlist?list=PLhLZ_zxDsyOIKbQfKFM05BLYRhUZ7JP-M&si=PhhEGh77ahUsqikf"],
+    "PYQs": ["https://github.com/GATEOverflow/GO-PDFs/releases/tag/gatecse-2025"],
+    "NPTEL": ["https://youtube.com/playlist?list=PLyqSpQzTE6M_JcleDbrVyPnE0PixKs2JE&si=o0htQ1hAn60vNLRK"],
+    "Textbooks": ["Introduction to probability models / Sheldon M. Ross"],
+    "Free Tests": [
+        "https://gateoverflow.in/exam/623/go-classes-cs-da-2025-weekly-quiz-6-conditional-probability",
+        "https://gateoverflow.in/exam/628/go-classes-2025-weekly-quiz-13-probability-distributions",
+        "https://gateoverflow.in/exam/67/probability-previous-gate-1",
+        "https://gateoverflow.in/exam/159/probability-gate2020-previous-gate-1",
+        "https://gateoverflow.in/exam/160/probability-gate2020-previous-gate-2"
+    ],
+    "Progress": "Not Started"
+},
+"Calculus": {
+    "Topics": ["Limits", "Derivatives", "Integrals"],
+    "YouTube": ["Mohit Tyagi YT videos (All videos are not relevant for GATE, I will list out the relevant videos soon)"],
+    "PYQs": ["https://github.com/GATEOverflow/GO-PDFs/releases/tag/gatecse-2025"],
+    "NPTEL": ["https://youtube.com/playlist?list=PLEAYkSg4uSQ0q9CDkHkJGdUTQOgH1DLDj&si=Rt5U9aaad4jiXdT_"],
+    "Textbooks": ["Khan Academy: https://www.khanacademy.org/math/calculus-1"],
+    "Free Tests": [
+        "https://gateoverflow.in/exam/659/go-classes-2025-weekly-quiz-21-calculus",
+        "https://gateoverflow.in/exam/164/calculus-gate2020-previous-gate-1",
+        "https://gateoverflow.in/exam/159/probability-gate2020-previous-gate-1",
+        "https://gateoverflow.in/exam/160/probability-gate2020-previous-gate-2"
+    ],
+    "Progress": "Not Started"
+},
+"Aptitude": {
+    "Topics": ["General Aptitude"],
+    "YouTube": ["Resources, Short Notes, List of Topics: https://youtu.be/IADuDzccEOI?si=nNrS9v50ORGVxLgN"],
+    "Free Tests": [
+        "https://gateoverflow.in/exam/610/go-classes-2025-monthly-quiz-1-general-aptitude",
+        "https://gateoverflow.in/exam/631/go-classes-cs-da-2025-monthly-quiz-2-general-aptitude",
+        "https://gateoverflow.in/exam/660/go-classes-cs-da-2025-monthly-quiz-3-general-aptitude",
+        "https://gateoverflow.in/exam/36/go2017-aptitude-1",
+        "https://gateoverflow.in/exam/64/general-aptitude-set-2"
+    ],
+    "Progress": "Not Started"
+},
+"Free Mock Tests": {
+    "Topics": ["Full Length Mock Tests"],
+    "Free Tests": [
+        "https://gateoverflow.in/exam/70/go-17-mock-1",
+        "https://gateoverflow.in/exam/73/go-17-mock-2",
+        "https://gateoverflow.in/exam/74/go-17-mock-3",
+        "https://gateoverflow.in/exam/79/go-18-mock-4",
+        "https://gateoverflow.in/exam/126/test-by-ruturaj-mock-1",
+        "https://gateoverflow.in/exam/136/applied-course-2019-mock1"
+    ],
+    "Progress": "Not Started"
+},
+"Notes": {
+    "Topics": ["Notes from standard books for GATE CSE"],
+    "Resources": [
+        "Notes from standards books for GATE CSE: https://drive.google.com/drive/folders/1oGCYictHLqXE1skdkJ8PnaefBnLrRXwG",
+        "Handwritten Notes: https://github.com/baquer/GATE-and-CSE-Resources-for-Students/blob/master/AnkurGuptaNotes/CompilerDesign.pdf",
+        "Short Notes & Imp Questions: https://youtu.be/9HAxjug36wA?si=IkgiP3lGFiZYKAl7"
+    ],
+    "Progress": "Not Started"
+},
+"Crash Course": {
+    "Topics": ["Quick revision resources for all subjects"],
+    "Resources": {
+        "Operating System": ["[Watch Playlist](https://youtube.com/playlist?list=PL3eEXnCBViH8YECjupENQvZRMOebYS0gX)"],
+        "Computer Organization and Architecture": ["[Watch Playlist](https://youtube.com/playlist?list=PL3eEXnCBViH8OS7fH0uQdre5YGCIOhCBH)"],
+        "Computer Networks": ["[Watch Playlist](https://youtube.com/playlist?list=PL3eEXnCBViH-AnU_c_8uFSaMK1OfgtDGx)"],
+        "Compiler Design": [
+            "[Watch Video 1](https://www.youtube.com/live/2Qdhlo1513g)",
+            "[Watch Video 2](https://www.youtube.com/live/xPodJ4K4gLA)",
+            "[Watch Video 3](https://www.youtube.com/live/OV2c7-NWMzY)"
+        ],
+        "Theory of Computation": ["[Watch Playlist](https://youtube.com/playlist?list=PL3eEXnCBViH89Y1BopKeXyR-p8CTFwL-i)"],
+        "C-Programming": ["[Watch Playlist](https://youtube.com/playlist?list=PL3eEXnCBViH8K0AXG2fFkAhpNqI46emmI)"],
+        "Data Structures": ["[Watch Playlist](https://youtube.com/playlist?list=PL3eEXnCBViH8qQtEEoN7iy8ldG9uaYknF)"],
+        "Algorithms": ["[Watch Playlist](https://youtube.com/playlist?list=PL3eEXnCBViH_u3nCabMcv-6_D13Hky1Rx)"],
+        "Digital Logic": ["[Watch Playlist](https://youtube.com/playlist?list=PL3eEXnCBViH8l2irvvEt4I_fjIirSlvxp)"],
+        "Database Management System": ["[Watch Playlist](https://youtube.com/playlist?list=PL3eEXnCBViH86UibANMiagfbS72MxXusX)"],
+        "Discrete Maths": ["[Watch Playlist](https://youtube.com/playlist?list=PL3eEXnCBViH_Vy3CLfkxM_wsGrKoX8dVc)"],
+        "Engineering Mathematics": ["[Watch Playlist](https://youtube.com/playlist?list=PLvTTv60o7qj-9sbN77ueWdwL34cOmBPCi)"],
+        "Aptitude": ["[Watch Playlist](https://youtube.com/playlist?list=PLvTTv60o7qj_JEKht0r0JYBPeV8OmPH2X)"]
+    },
+    "Progress": "Not Started"
+},
+}
