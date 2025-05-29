@@ -2,3 +2,4 @@ streamlit
 pandas
 matplotlib
 sqlite3
+users.csv
