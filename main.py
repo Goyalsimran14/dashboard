@@ -4,8 +4,6 @@ import pandas as pd
 import matplotlib.pyplot as plt  
 import random
 import hashlib
-import os
-import string
 import sqlite3
 
 # Set Streamlit page configuration
@@ -14,6 +12,23 @@ st.set_page_config(page_title="GATE CSE Dashboard", layout="wide")
 # Initialize SQLite database
 DB_FILE = "dashboard.db"
 
+# Initialize session state variables
+if "page" not in st.session_state:
+    st.session_state.page = "auth"
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+if "username" not in st.session_state:
+    st.session_state.username = ""
+if "subject_progress" not in st.session_state:
+    st.session_state.subject_progress = {}
+if "study_log" not in st.session_state:
+    st.session_state.study_log = []
+if "attempted_tests" not in st.session_state:
+    st.session_state.attempted_tests = {}
+if "course_status" not in st.session_state:
+    st.session_state.course_status = {}
+
+# Initialize database
 def init_database():
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
@@ -104,62 +119,6 @@ def get_study_logs(username):
     return logs
 
 # Authentication function
-st.markdown("""
-<style>
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .login-container {
-        background-color: #f5f7fa;
-        border-radius: 15px;
-        padding: 30px 40px;
-        width: 400px;
-        margin: 80px auto;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        animation: fadeIn 1s ease-out;
-        font-family: 'Segoe UI', sans-serif;
-    }
-
-    .login-title {
-        text-align: center;
-        font-size: 50px;
-        font-weight: bold;
-        margin-bottom: 20px;
-        color: #2c3e50;
-    }
-
-    .subtext {
-        text-align: center;
-        font-family:'Segoe UI', sans-serif;
-        background-boxing: rgba(255, 255, 255, 0.8);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        animation: fadeIn 1.5s ease-in;
-        font-size: 30px;
-        font-weight: bold;
-        color: black;
-        shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-    }
-
-    .stButton>button {
-        width: 100%;
-        background-color: #4CAF50;
-        color: white;
-        font-size: 16px;
-        padding: 10px;
-        border-radius: 8px;
-        border: none;
-        transition: background-color 0.3s ease;
-    }
-
-    .stButton>button:hover {
-        background-color: #45a049;
-    }
-</style>
-""", unsafe_allow_html=True)
-
 def authenticate():
     st.title("🔒 Login or Sign Up")
     auth_mode = st.radio("Choose Mode", ["Login", "Sign Up"], horizontal=True)
@@ -188,7 +147,6 @@ def authenticate():
                 st.session_state.username = username
             else:
                 st.error("❌ Invalid login credentials.")
-
 
 # ---------- DARK THEME CSS ----------
 # st.markdown("""
@@ -615,7 +573,7 @@ def add_sidebar_navigation():
     if st.session_state.page != "new_page":
         st.sidebar.markdown('<div class="sidebar-section">', unsafe_allow_html=True)
         st.sidebar.markdown('<div class="sidebar-section-title">📘 Study Log</div>', unsafe_allow_html=True)
-        subject = st.sidebar.selectbox("Select Subject", ["Operating System", "Computer Networks", "Data Structures"], key="subject_select_sidebar")
+        subject = st.sidebar.selectbox("Select Subject", list(subjects.keys()), key="subject_select_sidebar")  # Include all subjects
         study_time = st.sidebar.slider("Study Hours", 0.0, 12.0, 0.0, 0.5, key="study_slider_sidebar", help="Log your study hours for today.")
         if st.sidebar.button("✅ Submit Study Log", key="submit_study_sidebar", help="Submit today's study log."):
             submit_study_log(st.session_state.username, subject, study_time, today.strftime("%Y-%m-%d"))
@@ -722,8 +680,14 @@ def home_page():
 }
 
 @keyframes fadeInDown {
-    0% {opacity: 0; transform: translateY(-20px);}
-    100% {opacity: 1; transform: translateY(0);}
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>
 """, unsafe_allow_html=True)
@@ -798,8 +762,8 @@ def home_page():
 #                 }}
 
 #                 @keyframes fadeInTop {{
-#                     0% {{ opacity: 0; transform: translateY(-20px); }}
-#                     100% {{ opacity: 1; transform: translateY(0); }}
+#                     0% { opacity: 0; transform: translateY(-20px); }
+#                     100% { opacity: 1; transform: translateY(0); }
 #                 }}
 #             </style>
 
@@ -1036,8 +1000,14 @@ def dashboard_page():
                 }}
 
                 @keyframes fadeInTop {{
-                    0% {{ opacity: 0; transform: translateY(-20px); }}
-                    100% {{ opacity: 1; transform: translateY(0); }}
+                    0% {{
+                        opacity: 0;
+                        transform: translateY(-20px);
+                    }}
+                    100% {{
+                        opacity: 1;
+                        transform: translateY(0);
+                    }}
                 }}
             </style>
 
@@ -1309,13 +1279,19 @@ def new_page():
 
         /* Animations */
         @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         @keyframes fadeInDown {
-            0% { opacity: 0; transform: translateY(-20px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes fadeInUp {
@@ -1560,24 +1536,24 @@ def new_page():
             st.markdown("---")
 
 # Page Routing
-if "page" not in st.session_state:
-    st.session_state.page = "auth"
-if "authenticated" not in st.session_state:
-    st.session_state.authenticated = False
-
 if st.session_state.page == "auth":
     authenticate()
 elif st.session_state.page == "home":
-    st.title("🏠 Home Page")
-    st.write("Welcome to the GATE CSE Dashboard!")
-    if st.button("Go to Dashboard"):
-        st.session_state.page = "dashboard"
+    home_page()
 elif st.session_state.page == "dashboard":
-    st.title("📚 Dashboard")
-    st.write("Subject-wise study resources and progress tracking.")
-    add_sidebar_navigation()
+    dashboard_page()
+elif st.session_state.page == "daywise":
+    daywise_timetable_page()
+elif st.session_state.page == "weekwise":
+    weekwise_timetable()
+elif st.session_state.page == "notes":
+    notes_section()
 elif st.session_state.page == "pie_chart":
     weekly_pie_chart()
+elif st.session_state.page == "new_page":
+    new_page()
+else:
+    st.error("Page not found. Please navigate using the sidebar.")
 
 # Footer
 year = datetime.datetime.now().year

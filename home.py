@@ -6,7 +6,7 @@ def home_page():
 <style>
 /* App background and font */
 .stApp {
-    # background: #lf5f7fa
+    /* background: #f5f7fa */
     font-family: 'Segoe UI', sans-serif;
     padding-bottom: 30px;
 }
