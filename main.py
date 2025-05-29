@@ -6,30 +6,41 @@ import random
 import hashlib
 import os
 import string
+import sqlite3
 
 # Set Streamlit page configuration
 st.set_page_config(page_title="GATE CSE Dashboard", layout="wide")
 
-# Initialize session state
-if "page" not in st.session_state:
-    st.session_state.page = "auth"
-if "attempted_tests" not in st.session_state:
-    st.session_state.attempted_tests = {}
-if "study_log" not in st.session_state:
-    st.session_state.study_log = []
-if "authenticated" not in st.session_state:
-    st.session_state.authenticated = False
-if "username" not in st.session_state:
-    st.session_state.username = ""
-if "subject_progress" not in st.session_state:
-    st.session_state.subject_progress = {}
+# Initialize SQLite database
+DB_FILE = "dashboard.db"
 
-# Initialize users.csv if not present
-USER_FILE = "users.csv"
-def init_user_file():
-    if not os.path.exists(USER_FILE):
-        df = pd.DataFrame(columns=["username", "password"])
-        df.to_csv(USER_FILE, index=False)
+def init_database():
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+
+    # Create users table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        username TEXT PRIMARY KEY,
+        password TEXT
+    )
+    """)
+
+    # Create study_log table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS study_log (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT,
+        subject TEXT,
+        hours REAL,
+        date TEXT
+    )
+    """)
+
+    conn.commit()
+    conn.close()
+
+init_database()
 
 # Hashing function
 def hash_password(password):
@@ -37,103 +48,125 @@ def hash_password(password):
 
 # Verify credentials
 def verify_user(username, password):
-    users = pd.read_csv(USER_FILE)
-    hashed = hash_password(password)
-    user = users[(users["username"] == username) & (users["password"] == hashed)]
-    return not user.empty
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    hashed_password = hash_password(password)
+    cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, hashed_password))
+    user = cursor.fetchone()
+    conn.close()
+    return user is not None
 
 # Add new user
 def add_user(username, password):
-    users = pd.read_csv(USER_FILE)
-    if username in users["username"].values:
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    hashed_password = hash_password(password)
+    try:
+        cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, hashed_password))
+        conn.commit()
+        return True
+    except sqlite3.IntegrityError:
         return False
-    new_user = pd.DataFrame([[username, hash_password(password)]], columns=["username", "password"])
-    users = pd.concat([users, new_user], ignore_index=True)
-    users.to_csv(USER_FILE, index=False)
-    return True
+    finally:
+        conn.close()
 
 # Reset password (send new password)
 def reset_password(username):
-    users = pd.read_csv(USER_FILE)
-    if username in users["username"].values:
-        new_password = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM users WHERE username = ?", (username,))
+    user = cursor.fetchone()
+    if user:
+        new_password = ''.join(random.choices("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", k=8))
         hashed_new_password = hash_password(new_password)
-        users.loc[users["username"] == username, "password"] = hashed_new_password
-        users.to_csv(USER_FILE, index=False)
+        cursor.execute("UPDATE users SET password = ? WHERE username = ?", (hashed_new_password, username))
+        conn.commit()
+        conn.close()
         return new_password
+    conn.close()
     return None
 
+# Submit study log
+def submit_study_log(username, subject, hours, date):
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO study_log (username, subject, hours, date) VALUES (?, ?, ?, ?)", (username, subject, hours, date))
+    conn.commit()
+    conn.close()
+
+# Retrieve study logs
+def get_study_logs(username):
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    cursor.execute("SELECT subject, hours, date FROM study_log WHERE username = ?", (username,))
+    logs = cursor.fetchall()
+    conn.close()
+    return logs
+
 # Authentication function
+st.markdown("""
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-container {
+        background-color: #f5f7fa;
+        border-radius: 15px;
+        padding: 30px 40px;
+        width: 400px;
+        margin: 80px auto;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        animation: fadeIn 1s ease-out;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .login-title {
+        text-align: center;
+        font-size: 50px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #2c3e50;
+    }
+
+    .subtext {
+        text-align: center;
+        font-family:'Segoe UI', sans-serif;
+        background-boxing: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 1.5s ease-in;
+        font-size: 30px;
+        font-weight: bold;
+        color: black;
+        shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .stButton>button {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .stButton>button:hover {
+        background-color: #45a049;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 def authenticate():
-    # CSS Styling with Animation
-    st.markdown("""
-        <style>
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(-20px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-
-            .login-container {
-                background-color: #f5f7fa;
-                border-radius: 15px;
-                padding: 30px 40px;
-                width: 400px;
-                margin: 80px auto;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-                animation: fadeIn 1s ease-out;
-                font-family: 'Segoe UI', sans-serif;
-            }
-
-            .login-title {
-                text-align: center;
-                font-size: 50px;
-                font-weight: bold;
-                margin-bottom: 20px;
-                color: #2c3e50;
-            }
-
-            .subtext {
-                text-align: center;
-                font-family:'Segoe UI', sans-serif;
-                background-boxing: rgba(255, 255, 255, 0.8);
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                animation: fadeIn 1.5s ease-in;
-                font-size: 30px;
-                font -weight: bold;
-                color: black;
-                shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                margin-bottom: 20px;
-            }
-
-            .stButton>button {
-                width: 100%;
-                background-color: #4CAF50;
-                color: white;
-                font-size: 16px;
-                padding: 10px;
-                border-radius: 8px;
-                border: none;
-                transition: background-color 0.3s ease;
-            }
-
-            .stButton>button:hover {
-                background-color: #45a049;
-            }
-        </style>
-    """, unsafe_allow_html=True)
-
-    # Login/Signup Container
-    st.markdown('<div class="subtext">Please login or sign up to continue</div>', unsafe_allow_html=True)
-
-    # Switch between login and signup
+    st.title("🔒 Login or Sign Up")
     auth_mode = st.radio("Choose Mode", ["Login", "Sign Up"], horizontal=True)
-
     username = st.text_input("👤 Username")
     password = st.text_input("🔒 Password", type="password")
-
     if auth_mode == "Sign Up":
         confirm_password = st.text_input("✅ Confirm Password", type="password")
-
     submitted = st.button("🔓 Login" if auth_mode == "Login" else "📝 Sign Up")
 
     if submitted:
@@ -156,7 +189,6 @@ def authenticate():
             else:
                 st.error("❌ Invalid login credentials.")
 
-    st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------- DARK THEME CSS ----------
 # st.markdown("""
@@ -579,20 +611,17 @@ def add_sidebar_navigation():
         <div class="sidebar-title">📅 {today.strftime('%B %d, %Y')} ({today.strftime('%A')})</div>
     """, unsafe_allow_html=True)
 
-    # Study Log Section (exclude for "new_page")
+    # Study Log Section
     if st.session_state.page != "new_page":
         st.sidebar.markdown('<div class="sidebar-section">', unsafe_allow_html=True)
         st.sidebar.markdown('<div class="sidebar-section-title">📘 Study Log</div>', unsafe_allow_html=True)
-        subject = st.sidebar.selectbox("Select Subject", list(subjects.keys()), key="subject_select_sidebar")
+        subject = st.sidebar.selectbox("Select Subject", ["Operating System", "Computer Networks", "Data Structures"], key="subject_select_sidebar")
         study_time = st.sidebar.slider("Study Hours", 0.0, 12.0, 0.0, 0.5, key="study_slider_sidebar", help="Log your study hours for today.")
         if st.sidebar.button("✅ Submit Study Log", key="submit_study_sidebar", help="Submit today's study log."):
-            st.session_state.study_log.append({
-                "Date": today.strftime("%Y-%m-%d"),
-                "Hours": study_time,
-                "subject": subject
-            })
+            submit_study_log(st.session_state.username, subject, study_time, today.strftime("%Y-%m-%d"))
             st.success("Study log submitted!")
         st.sidebar.markdown('</div>', unsafe_allow_html=True)
+
 
     # Weekly Stats Section
     if st.session_state.study_log and st.session_state.page != "new_page":
@@ -1187,15 +1216,16 @@ def weekly_pie_chart():
     add_sidebar_navigation()
     st.title("📊 Weekly Performance Pie Chart")
 
-    if st.session_state.study_log:
-        df = pd.DataFrame(st.session_state.study_log)
+    logs = get_study_logs(st.session_state.username)
+    if logs:
+        df = pd.DataFrame(logs, columns=["Subject", "Hours", "Date"])
         df["Date"] = pd.to_datetime(df["Date"])
         last_week = df[df["Date"] >= (datetime.datetime.now() - datetime.timedelta(days=7))]
         
         if not last_week.empty:
-            subject_hours = last_week.groupby("subject")["Hours"].sum()
+            subject_hours = last_week.groupby("Subject")["Hours"].sum()
 
-            fig, ax = plt.subplots(figsize=(6, 6))  # Medium size (6x6 inches)
+            fig, ax = plt.subplots(figsize=(6, 6))
             ax.pie(subject_hours, labels=subject_hours.index, autopct='%1.1f%%', startangle=90, colors=plt.cm.Paired.colors)
             ax.axis("equal")
             st.pyplot(fig)
@@ -1203,6 +1233,7 @@ def weekly_pie_chart():
             st.info("No study data available for the last 7 days.")
     else:
         st.info("No study data available. Start logging your study hours!")
+
 
 # ---------- NEW PAGE: Ongoing Courses Tracker ----------
 def new_page():
@@ -1537,35 +1568,17 @@ if "authenticated" not in st.session_state:
 if st.session_state.page == "auth":
     authenticate()
 elif st.session_state.page == "home":
-    home_page()
+    st.title("🏠 Home Page")
+    st.write("Welcome to the GATE CSE Dashboard!")
+    if st.button("Go to Dashboard"):
+        st.session_state.page = "dashboard"
 elif st.session_state.page == "dashboard":
-    if st.session_state.authenticated:
-        dashboard_page()
-    else:
-        st.session_state.page = "auth"
-elif st.session_state.page == "daywise":
-    daywise_timetable_page()
-elif st.session_state.page == "weekwise":
-    weekwise_timetable()
-elif st.session_state.page == "notes":
-    notes_section()
+    st.title("📚 Dashboard")
+    st.write("Subject-wise study resources and progress tracking.")
+    add_sidebar_navigation()
 elif st.session_state.page == "pie_chart":
     weekly_pie_chart()
-elif st.session_state.page == "new_page":
-    if st.session_state.authenticated:
-        new_page()
-    else:
-        st.session_state.page = "dashboard"
-        # Initialize practice_tracker in session state
-if "practice_tracker" not in st.session_state:
-    st.session_state.practice_tracker = pd.DataFrame({
-        "Subject": [""],  # Example subjects
-        "Number of Questions": [""],  # Number of questions
-        "Platform": [""],  # Platform (e.g., Leetcode, Hackerrank)
-        "Date": [""],  # Date (e.g., YYYY-MM-DD)
-    })
 
+# Footer
 year = datetime.datetime.now().year
 st.markdown(f"<hr><footer style='text-align:center; color:gray; font-size:12px;'>© {year} GATE CSE Dashboard | Made with ❤️ by You</footer>", unsafe_allow_html=True)
-
-
