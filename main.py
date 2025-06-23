@@ -160,93 +160,76 @@ def authenticate():
                 else:
                     st.error("❌ Username not found.")
 
-
-# ---------- DARK THEME CSS ----------
-# st.markdown("""
-#     <style>
-#         .stApp {
-#             background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-#             font-family: 'Segoe UI', sans-serif;
-#             color: white;
-#         }
-#         h1, h2, h3 {
-#             color: #90caf9;
-#             text-align: center;
-#             animation: fadeIn 1.5s ease-in;
-#         }
-#         .stButton>button {
-#             background-color: #1976d2;
-#             color: black;
-#             font-size: 16px;
-#             padding: 0.5em 1.5em;
-#             border-radius: 10px;
-#             border: none;
-#             transition: all 0.3s ease;
-#         }
-#         .stButton>button:hover {
-#             background-color: #0d47a1;
-#             transform: scale(1.05);
-#         }
-#         .stTextInput>div>div>input {
-#             background-color: #1a1a1a;
-#             color: white;
-#         }
-#         .stSlider>div {
-#             color: white;
-#         }
-#         @keyframes fadeIn {
-#             0% {opacity: 0;}
-#             100% {opacity: 1;}
-#         }
-#     </style>
-# """, unsafe_allow_html=True)
 st.markdown("""
     <style>
-        /* General mobile adjustments */
-        @media only screen and (max-width: 768px) {
-            .stApp {
-                padding: 10px; /* Reduce padding for smaller screens */
-            }
-            .custom-title {
-                font-size: 28px; /* Smaller font size for titles */
-            }
-            .custom-subtitle {
-                font-size: 16px; /* Smaller font size for subtitles */
-            }
-            .stButton > button {
-                width: 100%; /* Make buttons full-width */
-                font-size: 16px; /* Adjust button font size */
-            }
-            .streamlit-expanderContent {
-                padding: 10px; /* Reduce padding inside expanders */
-            }
-            .dataframe-container {
-                overflow-x: auto; /* Enable horizontal scrolling for tables */
-            }
-        }
+    /* Global font and layout */
+    .stApp {
+        font-family: 'Segoe UI', sans-serif;
+        padding: 1rem;
+        margin: 0;
+    }
 
-        /* Sidebar adjustments for mobile */
-        @media screen and (max-width: 768px) {
-            section[data-testid="stSidebar"] {
-                width: 100% !important;
-                max-width: 100% !important;
-            }
+    /* Responsive Sidebar */
+    @media screen and (max-width: 320px) {
+        section[data-testid="stSidebar"] {
+            width: 100% !important;
+            max-width: 100% !important;
+            position: relative;
+            z-index: 100;
         }
+        .css-1d391kg, .css-ffhzg2 {  /* Legacy container classes */
+            padding: 0.5rem !important;
+        }
+    }
 
-        /* Expander tweaks for better readability */
-        .streamlit-expanderHeader {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #0d47a1;
-            background-color: #e3f2fd;
-        }
+    /* Titles and text */
+    .custom-title {
+        font-size: 28px !important;
+        font-weight: 700;
+        text-align: center;
+        color: #0d47a1;
+        margin-top: 1.2rem;
+    }
 
-        /* Mobile-friendly padding inside expanders */
-        @media screen and (max-width: 768px) {
-            .streamlit-expanderContent {
-                padding: 10px;
-            }
+    .custom-subtitle {
+        font-size: 16px !important;
+        text-align: center;
+        color: #1565c0;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Button styling */
+    .stButton > button {
+        background-color: #1976d2;
+        color: white;
+        font-size: 16px;
+        padding: 0.6rem 1.5rem;
+        border-radius: 8px;
+        border: none;
+        transition: 0.2s;
+    }
+
+    .stButton > button:hover {
+        background-color: #0d47a1;
+        transform: scale(1.03);
+    }
+
+    /* Countdown/info box on top */
+    .motivation-box {
+        background-color: #e3f2fd;
+        border-left: 6px solid #2196f3;
+        padding: 0.8rem 1rem;
+        margin-bottom: 1rem;
+        font-size: 15px;
+        border-radius: 5px;
+    }
+
+    /* Mobile card layout fix */
+    @media screen and (max-width: 768px) {
+        .element-container {
+            flex-direction: column !important;
         }
+    }
     </style>
 """, unsafe_allow_html=True)
 
