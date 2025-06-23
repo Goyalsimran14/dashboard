@@ -117,29 +117,16 @@ def get_study_logs(username):
     logs = cursor.fetchall()
     conn.close()
     return logs
-
-# Authentication function
 def authenticate():
-    st.title("🔒 Login or Sign Up")
-    auth_mode = st.radio("Choose Mode", ["Login", "Sign Up"], horizontal=True)
-    username = st.text_input("👤 Username")
-    password = st.text_input("🔒 Password", type="password")
-    if auth_mode == "Sign Up":
-        confirm_password = st.text_input("✅ Confirm Password", type="password")
-    submitted = st.button("🔓 Login" if auth_mode == "Login" else "📝 Sign Up")
+    st.title("🔒 Login / Sign Up / Forgot Password")
 
-    if submitted:
-        if auth_mode == "Sign Up":
-            if password != confirm_password:
-                st.error("❌ Passwords do not match.")
-            elif not username or not password:
-                st.error("⚠️ All fields are required.")
-            else:
-                if add_user(username, password):
-                    st.success("✅ Account created! Please login now.")
-                else:
-                    st.warning("❌ Username already exists. Try another one.")
-        else:
+    auth_mode = st.radio("Choose Option", ["Login", "Sign Up", "Forgot Password"], horizontal=True)
+
+    username = st.text_input("👤 Username")
+
+    if auth_mode == "Login":
+        password = st.text_input("🔒 Password", type="password")
+        if st.button("🔓 Login"):
             if verify_user(username, password):
                 st.success(f"🎉 Welcome back, {username}!")
                 st.session_state.page = "home"
@@ -147,6 +134,32 @@ def authenticate():
                 st.session_state.username = username
             else:
                 st.error("❌ Invalid login credentials.")
+
+    elif auth_mode == "Sign Up":
+        password = st.text_input("🔒 Password", type="password")
+        confirm_password = st.text_input("✅ Confirm Password", type="password")
+        if st.button("📝 Create Account"):
+            if not username or not password:
+                st.error("⚠️ All fields are required.")
+            elif password != confirm_password:
+                st.error("❌ Passwords do not match.")
+            else:
+                if add_user(username, password):
+                    st.success("✅ Account created! Please login now.")
+                else:
+                    st.warning("❌ Username already exists. Try another one.")
+
+    elif auth_mode == "Forgot Password":
+        if st.button("📧 Reset Password"):
+            if not username:
+                st.warning("⚠️ Please enter your username to reset your password.")
+            else:
+                new_password = reset_password(username)
+                if new_password:
+                    st.success(f"🔑 Your new password is: `{new_password}`\nPlease save it securely and use it to log in.")
+                else:
+                    st.error("❌ Username not found.")
+
 
 # ---------- DARK THEME CSS ----------
 # st.markdown("""

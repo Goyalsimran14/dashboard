@@ -1,5 +1,11 @@
- ---------- NEW PAGE: Ongoing Courses Tracker ----------
+#  ---------- NEW PAGE: Ongoing Courses Tracker ----------
+import streamlit as st
+import pandas as pd
 def new_page():
+    def add_sidebar_navigation():
+        st.sidebar.title("Navigation")
+        st.sidebar.markdown("Use the sidebar to select a course or tracker.")
+
     add_sidebar_navigation()
     st.title("📚 Ongoing Courses Tracker")
     st.markdown("""
@@ -235,7 +241,6 @@ def new_page():
                     formatted_data.append(entry)
             formatted_course_data[course] = formatted_data
         return formatted_course_data
-
 
     def format_topics(data):
         formatted_data = []

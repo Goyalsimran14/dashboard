@@ -76,6 +76,7 @@ def home_page():
 
     st.markdown('<div class="custom-title">📊 Welcome to GATE CSE Dashboard</div>', unsafe_allow_html=True)
     st.markdown('<div class="custom-subtitle">Prepare smart, stay consistent & crack GATE 🚀</div>', unsafe_allow_html=True)
+    
  # Navigation buttons
     if st.button("Go to Dashboard"):
         st.session_state.page = "dashboard"
